@@ -1,0 +1,42 @@
+import numpy as np
+import pygame
+
+
+class YuanYangEnv:
+    def __init__(self):
+        self.states = []
+        for i in range(0, 100):
+            self.states.append(i)
+        self.actions = ['e', 's', 'w', 'n']
+        self.gamma = 0.8
+        self.value = np.zeros((10, 10))
+        self.viewer = None
+        self.FPSCLOCK = pygame.time.Clock()
+        self.screen_size=(1200,900)
+        self.obstacle1_x=[]
+        self.obstacle1_y=[]
+        self.obstacle2_x=[]
+        self.obstacle2_y=[]
+        for i in range(8):
+            # 第1个障碍物
+            self.obstacle1_x.append(360)
+            if i<=3:
+                self.obstacle1_y.append(90*i)
+            else:
+                self.obstacle1_y.append(90*(i+2))
+            # 第2个障碍物
+            self.obstacle2_x.append(720)
+            if i <= 4:
+                self.obstacle2_y.append(90 * i)
+            else:
+                self.obstacle2_y.append(90 * (i + 2))
+        self.bird_male_init_position=[0.0, 0.0]
+        self.bird_male_position=[0,0]
+        self.bird_female_init_position=[1080,0]
+
+    def collide(self,state_position):
+        flag=1
+        flag1=1
+        flag2=1
+
+
